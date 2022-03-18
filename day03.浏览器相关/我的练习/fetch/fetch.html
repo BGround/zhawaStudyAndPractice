@@ -15,10 +15,15 @@
 </body>
 <script type="text/javascript">
     var xhr;
+    // 中止fetch
+    var controller = new AbortController();
+    var signal = controller.signal;
+
     function makeRequest() {
         fetch('https://example.com', {
             method:'GET',
-            credentials:"same-origin"
+            credentials:"same-origin",
+            signal: signal
         })
             .then(response => response.json())
             .then(data => console.log(data));
@@ -32,6 +37,7 @@
         })
     }
 
+    controller.abort();
 
 </script>
 <style scoped>
