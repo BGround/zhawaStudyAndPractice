@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax-demo</title>
+</head>
+<body>
+    <div id="web">
+        <button id='ajaxButton' type="button" onclick="makeRequest()">MakeRequset</button>
+        <div id="text"></div>
+    </div>
+    
+</body>
+<script type="text/javascript">
+    var xhr;
+    function makeRequest() {
+        if (window.XMLHttpRequest) {
+            xhr = new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+            xhr = new ActiveXObject("Microsoft XMLHTTP");
+        }
+
+        if (!xhr) {
+            alert('can not create a XMLHTTP instance');
+            return false;
+        }
+
+        method = 'GET';
+        
+        url = 'test.txt';
+
+        xhr.onreadystatechange = alertContents;
+        xhr.open(method, url, true);
+        xhr.upload.onProgress = p => {
+            console.log(Math.round(p.loaded / total) * 100 + '%');
+        }
+        xhr.setRequestHeader(
+                "ContentType",
+                "application/x-www-form-urlencoded"
+            );
+        xhr.send();
+    }
+
+    function alertContents() {
+        if (xhr.readystate === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                document.getElementById('text').innerHTML(xhr.responseText);
+            } else {
+                alert('there was a problem with request');
+            }
+        }
+    }
+
+
+</script>
+<style scoped>
+    #web {
+        background-color: gray;
+        width: 500px;
+        height: 500px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    #id {
+        background-color: antiquewhite;
+        width: 100px;
+        height: 100px;
+    }
+    #text {
+        background-color: blanchedalmond;
+        width: 100px;
+        height: 100px;
+        margin-top: 50px;
+    }
+</style>
+</html>
