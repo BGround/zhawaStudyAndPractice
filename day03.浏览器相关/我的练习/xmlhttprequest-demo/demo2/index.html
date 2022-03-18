@@ -29,12 +29,12 @@
 
         method = 'GET';
         
-        url = 'test.txt';
+        url = './index.html';
 
         xhr.onreadystatechange = alertContents;
         xhr.open(method, url, true);
         xhr.upload.onProgress = p => {
-            console.log(Math.round(p.loaded / total) * 100 + '%');
+            console.log(Math.round(p.loaded / p.total) * 100 + '%');
         }
         xhr.setRequestHeader(
                 "ContentType",
