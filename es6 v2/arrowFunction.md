@@ -34,7 +34,7 @@
         getTeacher: function() {
             console.log('teacher is:', this.teacher);
             return this.teacher;
-        }
+        },
         getLeader: () => {
             console.log('leader is:', this.leader);
             return this.leader;
@@ -46,6 +46,7 @@
 ### 场景
 #### 场景1：dom操作cb时
 ```js
+    // this上下文指向window
     const btn = document.querySelector('#btn');
 
     btn.addEventListener('click', function() {

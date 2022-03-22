@@ -1,6 +1,7 @@
 ## const 常量标识
 ```js
     const LIMIT = 10;
+    //正反翻译机
     cosnt OBJ_MAP = {
         a: 'A',
         A: 'a'
@@ -106,7 +107,7 @@ const arg3 = '云隐';
 
     // freeze只能冻结根层，嵌套引用类型需要遍历递归
     // 面试题目
-    function deepFreeze() {
+    function deepFreeze(obj) {
         // 2. 确定主执行步骤
         Object.freeze(obj);
         // 3. 逐级深入
@@ -120,4 +121,17 @@ const arg3 = '云隐';
         })
     }
     // lodash: clone deepclone equal deepequal
+
+    // for in - hasOwnProperty
+    function deepFreeze(obj) {
+        Object.freeze(obj);
+
+        for (var key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                if (typeof obj[key] === 'object') {
+                    deepFreeze(obj[key]);
+                }
+            }
+        }
+    }
 ```
