@@ -48,20 +48,21 @@ export default {
     },
     render(h) {
         return (
-            <li class={[
-                'tree_item',
-                this.checked && 'is-checked'
-                ]}>
+            <li class={['tree_item', this.checked && 'is-checked']}>
                 {/*展开箭头*/}
-                <div class={['arrow', this.expand ? 'expand' : '']} style={{display: this.isFolder ? 'block' : 'none'}}
-                    onClick={this.handleClickExpand}
-                ></div>
+                <div 
+                    class={['arrow', this.expand ? 'expand' : '']}
+                    style={{display: this.isFolder ? 'block' : 'none'}}
+                    onClick={this.handleClickExpand}>
+                </div>
+
                 {/*展示标题*/}
                 <a class={['v-tree__title']} 
                     style={{paddingLeft: this.level !== 0 && (`${this.level * this.indent}px`)}}
                     onClick={this.handleClickItem}>
                     { this.option['text'] }
                 </a>
+
                 {/*嵌套*/}
                 {
                     this.isFolder && 
@@ -106,6 +107,7 @@ export default {
     }
     .is-checked {
         color: blue;
+        border: solid;
     }
     ul, li {
         list-style: none;

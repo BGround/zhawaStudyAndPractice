@@ -71,6 +71,7 @@
     const o1 = new Obj('云隐', '小可');
     console.log(o1);
 
+    // 箭头函数无constructor, 无法实例化
     // 箭头函数无法构造原型方法
     Obj.prototype.learn = function() {
         console.log(this.teacher, this.leader);
@@ -79,6 +80,8 @@
         console.log(this.teacher, this.leader);
     }
 ```
+
+> 实质：1. 构造性质， 2. 上下文
 
 ### 箭头函数的参数特性 - 无法使用arguments
 ```js
