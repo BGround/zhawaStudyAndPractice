@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import "./styles.css";
 import { Provider } from "./Reduxx";
+import State from "./components/State/"
 import Effect from "./components/Effect";
 import Context from "./components/Context";
 import Reducer from "./components/Reducer";
@@ -10,7 +11,7 @@ import Memo from "./components/Memo";
 import Ref from "./components/Ref";
 
 export default function App() {
-  const [demoText] = useState("useState demo");
+  const [demoText] = useState("use Hook demo");
   return (
     <Router>
       <Provider>
@@ -18,7 +19,10 @@ export default function App() {
           <h3>Hooks</h3>
           <ul>
             <li>
-              <Link to="/">useState</Link>
+              <Link to="/">useHook</Link>
+            </li>
+            <li>
+              <Link to="/state">useState</Link>
             </li>
             <li>
               <Link to="/effect">useEffect</Link>
@@ -41,6 +45,7 @@ export default function App() {
           </ul>
           <div className="show">
             <Route path="/" exact render={() => <div>{demoText}</div>} />
+            <Route path="/state" exact component={State} />
             <Route path="/effect" exact component={Effect} />
             <Route path="/context" exact component={Context} />
             <Route path="/reducer" exact component={Reducer} />
